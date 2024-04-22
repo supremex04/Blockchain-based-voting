@@ -7,8 +7,8 @@ contract Voting{
         uint256 voteCount;
     }
     Candidate[] public candidates;
-    const address owner;
-    mapping (address -> bool) public voters;
+    address owner;
+    mapping (address => bool) public voters;
 
     uint256 votingStartTime;
     uint256 votingEndTime;
@@ -38,8 +38,8 @@ contract Voting{
     // here only owner can use this function
     function addCandidate(string memory _name) public onlyOwner {
         candidates.push(Candidate({
-            owner = _name,
-            voteCount = 0;
+            name: _name,
+            voteCount : 0
         }));
     }
 
@@ -51,6 +51,19 @@ contract Voting{
 
         candidates[_candidateIndex].voteCount++;
         voters[msg.sender] == true;
+    }
+    function getCandidatesInfo() public view returns (Candidate[] memory){
+        return candidates;
+    }
+    function getVotingTineStatus() public view returns (bool){
+        return (block.timestamp>=votingStartTime && block.timestamp < votingEndTime);
+    }
+    function getRemainingTime() public view returns (uint256){
+        require(block.timestamp >= votingStartTime, "Voting has not started yet!");
+        if (block.timestamp >= votingEndTime){
+            return 0;
+        }
+        return votingEndTime - block.timestamp;
     }
 
 }
