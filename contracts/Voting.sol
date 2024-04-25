@@ -55,7 +55,7 @@ contract Voting{
     function getCandidatesInfo() public view returns (Candidate[] memory){
         return candidates;
     }
-    function getVotingTineStatus() public view returns (bool){
+    function getVotingTimeStatus() public view returns (bool){
         return (block.timestamp>=votingStartTime && block.timestamp < votingEndTime);
     }
     function getRemainingTime() public view returns (uint256){

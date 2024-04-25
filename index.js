@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require('express');
 const app = express();
 const fileUpload = require('express-fileupload');
@@ -14,12 +14,12 @@ const ethers = require('ethers');
 
 var port = 3000;
 
-const API_URL = process.env.API_URL;
+const RPC_URL = process.env.RPC_URL;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
 
 const {abi} = require('./artifacts/contracts/Voting.sol/Voting.json');
-const provider = new ethers.providers.JsonRpcProvider(API_URL);
+const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 
 const signer = new ethers.Wallet(PRIVATE_KEY, provider);
 
