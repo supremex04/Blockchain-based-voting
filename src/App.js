@@ -138,6 +138,7 @@ function App() {
 
     const tx = await contractInstance.vote(number);
     await tx.wait();
+    getCandidates();
     canVote();
   }
  
