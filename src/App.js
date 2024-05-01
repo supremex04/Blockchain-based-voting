@@ -70,11 +70,21 @@ function App() {
     const contractInstance = new ethers.Contract (
       contractAddress, contractABI, signer
     );
-    const status = await contractInstance.getVotingStatus();
+    const status = await contractInstance.getVotingTimeStatus();
     console.log(status);
     setVotingStatus(status);
+  }
+  async function getRemainingTime() {
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    await provider.send("eth_requestAccounts", []);
+    const signer = provider.getSigner();
+    const contractInstance = new ethers.Contract (
+      contractAddress, contractABI, signer
+    );
+    const time = await contractInstance.getRemainingTime();
+    setremainingTime(parseInt(time, 16));
 }
-
+ 
   return (
     <div className="App">
       {isConnected ? (<Connected account = {account}/>) : (<Login connectWallet = {connectToMetamask}/>)}
