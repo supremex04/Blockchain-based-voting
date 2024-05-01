@@ -50,7 +50,7 @@ contract Voting{
         require(_candidateIndex < candidates.length, "Index out of range!");
 
         candidates[_candidateIndex].voteCount++;
-        voters[msg.sender] == true;
+        voters[msg.sender] = true;
     }
     function getCandidatesInfo() public view returns (Candidate[] memory){
         return candidates;

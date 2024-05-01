@@ -6,10 +6,17 @@ const Connected = (props) => {
         <h1 className="connected_header">You are connected to Metamask!</h1>
         <p className="connected-account">Account: {props.account}</p>
         <p className="connected-account">Time Remaining: {props.remainingTime}</p>
+      {props.showButton ? (
+        <p>You have already voted!</p>
+      ) : 
+      (
       <div>
-      <input type="number" placeholder="Entern Candidate Index" value={props.number} onChange={props.handleNumberChange}></input>
+      <input type="number" placeholder="Enter Candidate Index" value={props.number} onChange={props.handleNumberChange}></input>
+
+      <br/>
       <button className="login-button" onClick = {props.voteFunction}> Vote</button>
       </div>
+      )}
       <table id="myTable" className="candidates-table">
                 <thead>
                 <tr>
